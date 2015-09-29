@@ -1,0 +1,531 @@
+#ifndef wl
+    #ifdef fl
+        #define wl 0  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+			#undef wl
+        #define wl 1  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif         
+			#undef wl
+        #define wl 2  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif  
+        #undef wl
+        #define wl 3  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif  
+			#undef wl
+        #define wl 4  
+                        #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif  
+        #undef wl
+        #define wl 5  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif
+			#undef wl
+        #define wl 6  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif
+			#undef wl
+        #define wl 7  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 8  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 9  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+		#undef wl
+        #define wl 10  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+		#undef wl
+        #define wl 11  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+		#undef wl
+        #define wl 12  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+		#undef wl
+        #define wl 13  
+            #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+		#undef wl
+        #define wl 14  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 15  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 16  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 17  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 18  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 19  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+         #define wl 20  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 21  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 22  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 23  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 24  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 25  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 26  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 27  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 28  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 29  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 30  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 31  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 32  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 33  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 34  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 35  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 36  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 37  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 38  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 39  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+         #define wl 40  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 41  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 42  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 43  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 44  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 45  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 46  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 47  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 48  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 49  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 50  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 51  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 52  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 53  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 54  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 55  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 56  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 57  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 58  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 59  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+         #define wl 60  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 61  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 62  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 63  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+        #define wl 64  
+           #if (wl+fl)<= 64
+                generate_literal(wl,fl)
+            #endif 
+        #undef wl
+    #endif
+#endif
+
+#ifndef fl
+    #ifndef wl
+        #define fl 0  
+            #include "gen_help" 
+        #undef fl
+        #define fl 1  
+            #include "gen_help" 
+        #undef fl
+        #define fl 2  
+            #include "gen_help" 
+        #undef fl
+        #define fl 3  
+            #include "gen_help" 
+        #undef fl
+        #define fl 4  
+            #include "gen_help" 
+        #undef fl
+        #define fl 5  
+            #include "gen_help" 
+        #undef fl
+        #define fl 6  
+            #include "gen_help" 
+        #undef fl
+        #define fl 7  
+            #include "gen_help" 
+        #undef fl
+        #define fl 8  
+            #include "gen_help" 
+        #undef fl
+        #define fl 9  
+            #include "gen_help" 
+        #undef fl
+        #define fl 10  
+            #include "gen_help" 
+        #undef fl
+        #define fl 11  
+            #include "gen_help" 
+        #undef fl
+        #define fl 12  
+            #include "gen_help" 
+        #undef fl
+        #define fl 13  
+            #include "gen_help" 
+        #undef fl
+        #define fl 14  
+            #include "gen_help" 
+        #undef fl
+        #define fl 15  
+            #include "gen_help" 
+        #undef fl
+        #define fl 16  
+            #include "gen_help" 
+        #undef fl
+        #define fl 17  
+            #include "gen_help" 
+        #undef fl
+        #define fl 18  
+            #include "gen_help" 
+        #undef fl
+        #define fl 19  
+            #include "gen_help" 
+        #undef fl
+         #define fl 20  
+            #include "gen_help" 
+        #undef fl
+        #define fl 21  
+            #include "gen_help" 
+        #undef fl
+        #define fl 22  
+            #include "gen_help" 
+        #undef fl
+        #define fl 23  
+            #include "gen_help" 
+        #undef fl
+        #define fl 24  
+            #include "gen_help" 
+        #undef fl
+        #define fl 25  
+            #include "gen_help" 
+        #undef fl
+        #define fl 26  
+            #include "gen_help" 
+        #undef fl
+        #define fl 27  
+            #include "gen_help" 
+        #undef fl
+        #define fl 28  
+            #include "gen_help" 
+        #undef fl
+        #define fl 29  
+            #include "gen_help" 
+        #undef fl
+        #define fl 30  
+            #include "gen_help" 
+        #undef fl
+        #define fl 31  
+            #include "gen_help" 
+        #undef fl
+        #define fl 32  
+            #include "gen_help" 
+        #undef fl
+        #define fl 33  
+            #include "gen_help" 
+        #undef fl
+        #define fl 34  
+            #include "gen_help" 
+        #undef fl
+        #define fl 35  
+            #include "gen_help" 
+        #undef fl
+        #define fl 36  
+            #include "gen_help" 
+        #undef fl
+        #define fl 37  
+            #include "gen_help" 
+        #undef fl
+        #define fl 38  
+            #include "gen_help" 
+        #undef fl
+        #define fl 39  
+            #include "gen_help" 
+        #undef fl
+         #define fl 40  
+            #include "gen_help" 
+        #undef fl
+        #define fl 41  
+            #include "gen_help" 
+        #undef fl
+        #define fl 42  
+            #include "gen_help" 
+        #undef fl
+        #define fl 43  
+            #include "gen_help" 
+        #undef fl
+        #define fl 44  
+            #include "gen_help" 
+        #undef fl
+        #define fl 45  
+            #include "gen_help" 
+        #undef fl
+        #define fl 46  
+            #include "gen_help" 
+        #undef fl
+        #define fl 47  
+            #include "gen_help" 
+        #undef fl
+        #define fl 48  
+            #include "gen_help" 
+        #undef fl
+        #define fl 49  
+            #include "gen_help" 
+        #undef fl
+        #define fl 50  
+            #include "gen_help" 
+        #undef fl
+        #define fl 51  
+            #include "gen_help" 
+        #undef fl
+        #define fl 52  
+            #include "gen_help" 
+        #undef fl
+        #define fl 53  
+            #include "gen_help" 
+        #undef fl
+        #define fl 54  
+            #include "gen_help" 
+        #undef fl
+        #define fl 55  
+            #include "gen_help" 
+        #undef fl
+        #define fl 56  
+            #include "gen_help" 
+        #undef fl
+        #define fl 57  
+            #include "gen_help" 
+        #undef fl
+        #define fl 58  
+            #include "gen_help" 
+        #undef fl
+        #define fl 59  
+            #include "gen_help" 
+        #undef fl
+         #define fl 60  
+            #include "gen_help" 
+        #undef fl
+        #define fl 61  
+            #include "gen_help" 
+        #undef fl
+        #define fl 62  
+            #include "gen_help" 
+        #undef fl
+        #define fl 63  
+            #include "gen_help" 
+        #undef fl
+        #define fl 64  
+            #include "gen_help" 
+        #undef fl
+    #endif
+#endif
+
+
