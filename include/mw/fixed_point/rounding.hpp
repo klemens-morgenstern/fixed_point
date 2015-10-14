@@ -5,8 +5,8 @@
  *      Author: user
  */
 
-#ifndef ROUNDING_H_
-#define ROUNDING_H_
+#ifndef MW_FIXED_POINT_ROUNDING_H_
+#define MW_FIXED_POINT_ROUNDING_H_
 
 #include <mw/fixed_point/type_helper.hpp>
 #include <cmath>
@@ -17,7 +17,6 @@ namespace mw
 namespace fixed_point
 {
 
-///
 enum class rounding_mode
 {
 	trunc, ///<Computes nearest integer to arg. Number is rounded away from zero in halfway cases

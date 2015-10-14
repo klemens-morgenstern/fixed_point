@@ -1,10 +1,9 @@
 
 #include <boost/test/minimal.hpp>
-#include <mw/fp/type_helper.hpp>
+#include <mw/fixed_point/fixed_point.hpp>
 
 void run()
 {
-
 
 }
 

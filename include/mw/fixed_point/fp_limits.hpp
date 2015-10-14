@@ -8,13 +8,13 @@
 #ifndef FP_LIMITS_H_
 #define FP_LIMITS_H_
 
-#include "fp.h"
+#include <mw/fixed_point/fixed_point.hpp>
 #include <limits>
 
 namespace std
 {
 
-template<long wl, long fl, typename _sign_t, fixed_point::rounding_mode r_mode, fixed_point::narrow fp_convs,
+template<long wl, long fl, typename _sign_t, mw::fixed_point::rounding_mode r_mode, fixed_point::narrow fp_convs,
 				bool sign_change, fixed_point::narrow flt_convs, fixed_point::narrow int_convs>
 struct numeric_limits<fixed_point::fp_t<wl, fl, _sign_t, r_mode, fp_convs, sign_change, flt_convs, int_convs>>
 {

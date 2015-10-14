@@ -5,8 +5,8 @@
  *      Author: user
  */
 
-#ifndef MW_FP_TYPE_HELPER_H_
-#define MW_FP_TYPE_HELPER_H_
+#ifndef MW_FIXED_POINT_TYPE_HELPER_H_
+#define MW_FIXED_POINT_TYPE_HELPER_H_
 
 #include <limits>
 #include <cstdint>
@@ -19,11 +19,10 @@
 
 namespace mw
 {
-namespace detail
-{
 namespace fixed_point
 {
-
+namespace detail
+{
 
 template<std::size_t Size>
 struct float_type

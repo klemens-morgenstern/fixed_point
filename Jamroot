@@ -3,7 +3,6 @@ project
     : source-location .
     : requirements
         <include>.
-        <include>F:/boost/include/boost-1_59
         <link>static
     ;
 
