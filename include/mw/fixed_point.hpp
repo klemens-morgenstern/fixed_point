@@ -8,7 +8,7 @@
 #ifndef FP_H_
 #define FP_H_
 
-#include "Narrow.h"
+#include "narrow.h"
 
 namespace fixed_point
 {

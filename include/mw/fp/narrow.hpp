@@ -15,6 +15,9 @@
 #include "TypeHelper.h"
 #include "FixedPoint.h"
 
+namespace mw
+{
+
 namespace fixed_point
 {
 
@@ -271,5 +274,6 @@ struct fp_int_conv : fp_flt_conv<wl, fl, _sign_t, r_mode, fp_convs, sign_change,
 };
 
 
+}
 }
 #endif /* NARROW_H_ */

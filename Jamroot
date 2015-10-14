@@ -1,0 +1,12 @@
+
+project
+    : source-location .
+    : requirements
+        <include>.
+        <include>F:/boost/include/boost-1_59
+        <link>static
+    ;
+
+build-project test ;
+build-project  doc ;
+explicit doc ;

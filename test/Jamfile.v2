@@ -1,0 +1,14 @@
+project test ;
+
+import testing ;
+
+project 
+    : requirements
+        <include>../include
+        <toolset>gcc:<cxxflags>-std=gnu++1y
+    ;
+    
+test-suite fixed-point
+	: 
+	[ run test1.cpp  ] 
+	;
