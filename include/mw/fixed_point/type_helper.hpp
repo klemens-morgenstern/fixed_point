@@ -19,7 +19,8 @@
 
 namespace mw
 {
-
+namespace detail
+{
 namespace fixed_point
 {
 
@@ -155,6 +156,7 @@ struct types
 
 
 
+}
 }
 }
 
