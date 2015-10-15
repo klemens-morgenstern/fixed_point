@@ -13,6 +13,7 @@
 #include <type_traits>
 
 #ifndef NO_BOOST
+#include <boost/iterator/iterator_traits.hpp> //for some reason travis does not compile
 #include <boost/multiprecision/float128.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
 #endif
