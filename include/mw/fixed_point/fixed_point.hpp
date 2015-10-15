@@ -33,25 +33,26 @@ constexpr unsigned long construct_mask(std::size_t i) {return (i>=1L) ? (constru
 template<long wl, long fl, typename _sign_t = signed, rounding_mode r_mode = rounding_mode::trunc>
 struct fp_t
 {
-	typedef typename detail::types<wl, _sign_t>::type type;
+	static_assert(wl > 0, "Word lenght must be positive");
+	typedef typename detail::types<wl, _sign_t>::type int_type;
 	typedef typename detail::types<wl, _sign_t>::min_float_t float_t;
 	typedef _sign_t sign_t;
 	constexpr static bool is_signed = std::is_signed<sign_t>::value;
 	constexpr static long word_length 	  = wl;
 	constexpr static long fraction_length = fl;
 	constexpr static rounding_mode round_mode = r_mode;
-	constexpr static type mask = detail::construct_mask(wl);
-	constexpr static type sign_pos = is_signed ? (1<<(wl-1)) : 0;
+	constexpr static int_type mask = detail::construct_mask(wl);
+	constexpr static int_type sign_pos = is_signed ? (1<<(wl-1)) : 0;
 
 	///The factor is the one in the fixed-point notation
 	static constexpr float_t factor = (1<<fl);
 private:
 	///Value stored
-	type _value;
+	int_type _value;
     typedef fp_t<wl, fl, sign_t, r_mode> my_type;
 public:
-    constexpr static type max_i = std::is_signed<_sign_t>::value ? (detail::construct_mask(wl-1)) : mask;
-	constexpr static type min_i = std::is_signed<_sign_t>::value ? (~detail::construct_mask(wl-1)) : 0;
+    constexpr static int_type max_i = std::is_signed<_sign_t>::value ? (detail::construct_mask(wl-1)) : mask;
+	constexpr static int_type min_i = std::is_signed<_sign_t>::value ? (~detail::construct_mask(wl-1)) : 0;
 
 	constexpr static fp_t max = fp_t(max_i);
 	constexpr static fp_t min = fp_t(min_i);
