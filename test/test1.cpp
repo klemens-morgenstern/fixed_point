@@ -1,6 +1,6 @@
 
 #include <boost/test/minimal.hpp>
-#include <mw/fixed_point/fixed_point.hpp>
+//#include <mw/fixed_point/fixed_point.hpp>
 
 void run()
 {

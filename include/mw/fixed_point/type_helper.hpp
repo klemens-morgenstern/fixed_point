@@ -21,6 +21,19 @@ namespace mw
 {
 namespace fixed_point
 {
+
+#ifndef NO_BOOST
+using boost::multiprecision::float128;
+using boost::multiprecision::uint128_t;
+using boost::multiprecision:: int128_t;
+using boost::multiprecision::uint256_t;
+using boost::multiprecision:: int256_t;
+using boost::multiprecision::uint512_t;
+using boost::multiprecision:: int512_t;
+using boost::multiprecision::uint1024_t;
+using boost::multiprecision:: int1024_t;
+#endif
+
 namespace detail
 {
 
