@@ -5,8 +5,12 @@
  *      Author: klemens.morgenstern
  */
 
-#ifndef ROUND_FP_HPP_
-#define ROUND_FP_HPP_
+#ifndef MW_FIXED_POINT_ROUND_FIXED_POINT_HPP_
+#define MW_FIXED_POINT_ROUND_FIXED_POINT_HPP_
+
+#include <mw/fixed_point/rounding_mode.hpp>
+#include <mw/fixed_point/make_mask.hpp>
+#include <mw/fixed_point/type_helper.hpp>
 
 namespace mw
 {
@@ -56,21 +60,64 @@ namespace detail
  *  	value &= ~0b111;
  *  }
  *
- *
+ *  @tparam fl_to The fraction it should be rounded to.
  */
 
-template<long wl, long fl, typename sign, rounding_mode rm>
+template<long wl, long fl, typename sign, rounding_mode rm, long fl_to = fl>
 constexpr fp_t<wl, fl, sign, rm> round(fp_t<wl, fl, sign, rm> in)
 {
+	typedef typename fp_t<wl, fl_to, sign, rm>::type type;
+	constexpr static type  first_frac = (1<<(fl_to-1));
+	constexpr static type frac_mask = make_mask<type>(fl_to);
+
 	return in.negative() ?
-			((in.value() & (1<<wl)) ?
-					:
-					)
+			(in.value() & frac_mask) >= first_frac ?
+					(in.value() | frac_mask) + 1
+					: (in.value() & ~frac_mask)
 			:
+			((in.value() & first_frac) ?
+					(in.value() | frac_mask) +1
+				:	(in.value() & ~frac_mask))
 			;
 }
 
+template<long wl, long fl, typename sign, rounding_mode rm, long fl_to = fl>
+constexpr fp_t<wl, fl, sign, rm> trunc(fp_t<wl, fl, sign, rm> in)
+{
+	typedef typename fp_t<wl, fl_to, sign, rm>::type type;
+	constexpr static type frac_mask = make_mask<type>(fl_to);
+	return in.negative() ?
+			((in.value() & frac_mask) ?
+					(in.value() | frac_mask) + 1
+					: in.value())
+			:
+			(in.value() & frac_mask) ?
+					(in.value() & ~frac_mask) + 1
+					: in.value()
+			;
+}
 
+template<long wl, long fl, typename sign, rounding_mode rm, long fl_to = fl>
+constexpr fp_t<wl, fl, sign, rm> ceil(fp_t<wl, fl, sign, rm> in)
+{
+	typedef typename fp_t<wl, fl_to, sign, rm>::type type;
+	constexpr static type frac_mask = make_mask<type>(fl_to);
+	return 	((in.value() & frac_mask) ?
+			  (in.value() | frac_mask) + 1
+			: in.value())
+			;
+}
+
+template<long wl, long fl, typename sign, rounding_mode rm, long fl_to = fl>
+constexpr fp_t<wl, fl, sign, rm> floor(fp_t<wl, fl, sign, rm> in)
+{
+	typedef typename fp_t<wl, fl_to, sign, rm>::type type;
+	constexpr static type frac_mask = make_mask<type>(fl_to);
+	return 	((in.value() & frac_mask) ?
+			  in.value() & ~frac_mask
+			: in.value())
+			;
+}
 
 }}
 

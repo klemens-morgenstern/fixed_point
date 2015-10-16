@@ -12,4 +12,5 @@ test-suite fixed-point
 	: 
 	[ run test1.cpp  ] 
 	[ run static_test_rounding.cpp ]
+	[ run test_make_mask.cpp ]
 	;
