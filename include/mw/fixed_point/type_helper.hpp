@@ -167,6 +167,51 @@ struct types
 	typedef std::integral_constant<bool, (std::numeric_limits<float_type_max>::digits > size)> float_overflow;
 };
 
+template<typename T> struct to_signed {};
+template<typename T> struct to_unsigned {};
+
+
+template<> struct to_signed<std::uint8_t>  { typedef std::int8_t  type; };
+template<> struct to_signed<std:: int8_t>  { typedef std::int8_t  type; };
+template<> struct to_signed<std::uint16_t> { typedef std::int16_t type; };
+template<> struct to_signed<std:: int16_t> { typedef std::int16_t type; };
+template<> struct to_signed<std::uint32_t> { typedef std::int32_t type; };
+template<> struct to_signed<std:: int32_t> { typedef std::int32_t type; };
+template<> struct to_signed<std::uint64_t> { typedef std::int64_t type; };
+template<> struct to_signed<std:: int64_t> { typedef std::int64_t type; };
+
+template<> struct to_unsigned<std::uint8_t>  { typedef std::uint8_t  type; };
+template<> struct to_unsigned<std:: int8_t>  { typedef std::uint8_t  type; };
+template<> struct to_unsigned<std::uint16_t> { typedef std::uint16_t type; };
+template<> struct to_unsigned<std:: int16_t> { typedef std::uint16_t type; };
+template<> struct to_unsigned<std::uint32_t> { typedef std::uint32_t type; };
+template<> struct to_unsigned<std:: int32_t> { typedef std::uint32_t type; };
+template<> struct to_unsigned<std::uint64_t> { typedef std::uint64_t type; };
+template<> struct to_unsigned<std:: int64_t> { typedef std::uint64_t type; };
+
+#ifndef NO_BOOST
+template<> struct to_signed<uint128_t>  { typedef int128_t  type; };
+template<> struct to_signed< int128_t>  { typedef int128_t  type; };
+template<> struct to_signed<uint256_t>  { typedef int256_t  type; };
+template<> struct to_signed< int256_t>  { typedef int256_t  type; };
+template<> struct to_signed<uint512_t>  { typedef int512_t  type; };
+template<> struct to_signed< int512_t>  { typedef int512_t  type; };
+template<> struct to_signed<uint1024_t> { typedef int1024_t type; };
+template<> struct to_signed< int1024_t> { typedef int1024_t type; };
+
+template<> struct to_unsigned<uint128_t>  { typedef uint128_t  type; };
+template<> struct to_unsigned< int128_t>  { typedef uint128_t  type; };
+template<> struct to_unsigned<uint256_t>  { typedef uint256_t  type; };
+template<> struct to_unsigned< int256_t>  { typedef uint256_t  type; };
+template<> struct to_unsigned<uint512_t>  { typedef uint512_t  type; };
+template<> struct to_unsigned< int512_t>  { typedef uint512_t  type; };
+template<> struct to_unsigned<uint1024_t> { typedef uint1024_t type; };
+template<> struct to_unsigned< int1024_t> { typedef uint1024_t type; };
+#endif
+
+
+template<typename T> using to_signed_t 	 = typename to_signed<T>::  type;
+template<typename T> using to_unsigned_t = typename to_unsigned<T>::type;
 
 
 }

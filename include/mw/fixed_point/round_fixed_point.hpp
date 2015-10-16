@@ -62,10 +62,12 @@ namespace detail
 template<long wl, long fl, typename sign, rounding_mode rm>
 constexpr fp_t<wl, fl, sign, rm> round(fp_t<wl, fl, sign, rm> in)
 {
-	/*return in.negative() ?
-			in.value()
+	return in.negative() ?
+			((in.value() & (1<<wl)) ?
+					:
+					)
 			:
-			;*/
+			;
 }
 
 
