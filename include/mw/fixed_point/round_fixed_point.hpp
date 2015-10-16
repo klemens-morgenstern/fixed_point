@@ -66,7 +66,7 @@ namespace detail
 template<long wl, long fl, typename sign, rounding_mode rm, long fl_to = fl>
 constexpr fp_t<wl, fl, sign, rm> round(fp_t<wl, fl, sign, rm> in)
 {
-	typedef typename fp_t<wl, fl_to, sign, rm>::type type;
+	typedef typename fp_t<wl, fl_to, sign, rm>::int_type type;
 	constexpr static type  first_frac = (1<<(fl_to-1));
 	constexpr static type frac_mask = make_mask<type>(fl_to);
 
@@ -84,7 +84,7 @@ constexpr fp_t<wl, fl, sign, rm> round(fp_t<wl, fl, sign, rm> in)
 template<long wl, long fl, typename sign, rounding_mode rm, long fl_to = fl>
 constexpr fp_t<wl, fl, sign, rm> trunc(fp_t<wl, fl, sign, rm> in)
 {
-	typedef typename fp_t<wl, fl_to, sign, rm>::type type;
+	typedef typename fp_t<wl, fl_to, sign, rm>::int_type type;
 	constexpr static type frac_mask = make_mask<type>(fl_to);
 	return in.negative() ?
 			((in.value() & frac_mask) ?
@@ -100,7 +100,7 @@ constexpr fp_t<wl, fl, sign, rm> trunc(fp_t<wl, fl, sign, rm> in)
 template<long wl, long fl, typename sign, rounding_mode rm, long fl_to = fl>
 constexpr fp_t<wl, fl, sign, rm> ceil(fp_t<wl, fl, sign, rm> in)
 {
-	typedef typename fp_t<wl, fl_to, sign, rm>::type type;
+	typedef typename fp_t<wl, fl_to, sign, rm>::int_type type;
 	constexpr static type frac_mask = make_mask<type>(fl_to);
 	return 	((in.value() & frac_mask) ?
 			  (in.value() | frac_mask) + 1
@@ -111,7 +111,7 @@ constexpr fp_t<wl, fl, sign, rm> ceil(fp_t<wl, fl, sign, rm> in)
 template<long wl, long fl, typename sign, rounding_mode rm, long fl_to = fl>
 constexpr fp_t<wl, fl, sign, rm> floor(fp_t<wl, fl, sign, rm> in)
 {
-	typedef typename fp_t<wl, fl_to, sign, rm>::type type;
+	typedef typename fp_t<wl, fl_to, sign, rm>::int_type type;
 	constexpr static type frac_mask = make_mask<type>(fl_to);
 	return 	((in.value() & frac_mask) ?
 			  in.value() & ~frac_mask

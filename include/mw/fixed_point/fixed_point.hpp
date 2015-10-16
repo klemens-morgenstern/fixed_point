@@ -34,8 +34,8 @@ template<long wl, long fl, typename _sign_t = signed, rounding_mode r_mode = rou
 struct fp_t
 {
 	static_assert(wl > 0, "Word lenght must be positive");
-	typedef typename detail::types<wl, _sign_t>::type int_type;
-	typedef typename detail::types<wl, _sign_t>::min_float_t float_t;
+	typedef typename types<wl, _sign_t>::type int_type;
+	typedef typename types<wl, _sign_t>::min_float_t float_t;
 	typedef _sign_t sign_t;
 	constexpr static bool is_signed = std::is_signed<sign_t>::value;
 	constexpr static long word_length 	  = wl;
@@ -49,8 +49,9 @@ struct fp_t
 private:
 	///Value stored
 	int_type _value;
-    typedef fp_t<wl, fl, sign_t, r_mode> my_type;
+    typedef fp_t<wl, fl, sign_t, r_mode> type;
 public:
+    int_type value() const {return _value;}
     constexpr static int_type max_i = std::is_signed<_sign_t>::value ? (detail::construct_mask(wl-1)) : mask;
 	constexpr static int_type min_i = std::is_signed<_sign_t>::value ? (~detail::construct_mask(wl-1)) : 0;
 
@@ -59,6 +60,82 @@ public:
 
 	constexpr static float_t max_f = (float_t)max_i / (float_t)factor;
 	constexpr static float_t min_f = (float_t)min_i / (float_t)factor;
+
+	constexpr fp_t () noexcept = default;
+	constexpr fp_t (const fp_t&) noexcept = default;
+	constexpr fp_t (fp_t&&) noexcept = default;
+
+	constexpr fp_t operator=(const fp_t&) noexcept = default;
+	constexpr fp_t operator=(fp_t&&) noexcept = default;
+
+
+/***********************************//* Constructor *//****************************************/
+	///Construct from a floating point smaller then the needed one of this fixed point. Not explicit
+	template<typename T,
+			 typename IsFloat = std::enable_if_t<std::is_floating_point<T>::value>,
+			 typename Narrowing = std::enable_if_t<sizeof(float_t)>=T>>
+	constexpr fp_t(T flt) noexcept
+			: _value(static_cast<int_type>(flt/factor) & mask) {}
+
+	///Construct from a floating point larg then the needed one of this fixed point. Explicit, because it's mangling
+	template<typename T,
+			 typename IsFloat = std::enable_if_t<std::is_floating_point<T>::value>,
+			 typename Narrowing = std::enable_if_t<sizeof(float_t)>=T>,
+			 typename = void> //because i cannot overload elsewise
+	explicit constexpr fp_t(T flt) noexcept
+		: _value(static_cast<int_type>(flt/factor) & mask) {}
+
+	///Construct from a integral smaller then the needed one of this fixed point. Not explicit
+	template<typename T,
+			 typename IsInt = std::enable_if_t<std::is_integral<T>::value>,
+			 typename Narrowing = std::enable_if_t<sizeof(float_t)>=T>,
+			 typename = void, typename = void>
+	constexpr fp_t(T _int) noexcept
+		: _value(_int & mask) {}
+
+	///Construct from a integral lard then the needed one of this fixed point. Not explicit
+	template<typename T,
+			 typename IsInt = std::enable_if_t<std::is_integral<T>::value>,
+			 typename Narrowing = std::enable_if_t<sizeof(float_t)>=T>,
+			 typename = void,
+			 typename = void,
+			 typename = void>
+	explicit constexpr fp_t(T _int) noexcept
+		: _value(_int & mask) {}
+
+
+	template<long wl_in,
+			 long fl_in,
+			 typename _sign_t_in,
+			 rounding_mode r_mode_in,
+			 typename Narrowing = std::enable_if_t<
+			 	 (fl_in >= fl) &&
+				 (wl_in >= wl) &&
+				 ((wl-fl) >= (wl_in-fl_in))>,
+			 typename = void,
+			 typename = void>
+	constexpr fp_t(fp_t<wl_in, fl_in, _sign_t_in, r_mode_in> in) noexcept
+		: _value(((fl > fl_in) ? in.value() << (fl-fl_in) : in.value()) & mask) { }
+
+	template<long wl_in,
+			 long fl_in,
+			 typename _sign_t_in,
+			 rounding_mode r_mode_in,
+			 typename Narrowing = std::enable_if_t<
+			 	 (fl_in < fl) ||
+				 (wl_in < wl) ||
+				 ((wl-fl) < (wl_in-fl_in))>,
+			 typename = void,
+			 typename = void,
+			 typename = void>
+	explicit constexpr fp_t(fp_t<wl_in, fl_in, _sign_t_in, r_mode_in> in) noexcept
+		: _value(
+				((fl > fl_in) ?
+						in.value() << (fl - fl_in)
+						: (fl < fl_in) ?
+						in.value() >> (fl_in - fl)
+						: in.value()
+						) & mask) { }
 
 
 
