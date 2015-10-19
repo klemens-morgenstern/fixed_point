@@ -177,12 +177,13 @@ void test_int64()
 
 int test_main(int, char**)
 {
-	test_uint8();
 	test_int8();
+	test_uint8();
+	test_int16();
 	test_uint16();
 	test_int32();
 	test_uint32();
 	test_int64();
-	test_int64();
+	test_uint64();
 	return 0;
 }
