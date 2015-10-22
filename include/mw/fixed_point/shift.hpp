@@ -5,8 +5,8 @@
  *      Author: klemens.morgenstern
  */
 
-#ifndef SHIFT_HPP_
-#define SHIFT_HPP_
+#ifndef MW_FIXED_POINT_SHIFT_HPP_
+#define MW_FIXED_POINT_SHIFT_HPP_
 
 
 #include <type_traits>
@@ -20,13 +20,13 @@ namespace fixed_point {
 template<unsigned I> std::integral_constant<unsigned, I> c;
 
 template<long wl, long fl, typename _sign_t, rounding_mode rm, unsigned shift>
-fp_t<wl, fl+shift, _sign_t, rm> operator<<(fp_t<wl, fl, _sign_t, rm> fp,  std::integral_constant<unsigned, shift>)
+constexpr fp_t<wl, fl+shift, _sign_t, rm> operator<<(fp_t<wl, fl, _sign_t, rm> fp,  std::integral_constant<unsigned, shift>)
 {
 	return fp.value();
 }
 
 template<long wl, long fl, typename _sign_t, rounding_mode rm, unsigned shift>
-fp_t<wl, fl-shift, _sign_t, rm> operator<<(fp_t<wl, fl, _sign_t, rm> fp,  std::integral_constant<unsigned, shift>)
+constexpr fp_t<wl, fl-shift, _sign_t, rm> operator<<(fp_t<wl, fl, _sign_t, rm> fp,  std::integral_constant<unsigned, shift>)
 {
 	return fp.value();
 }

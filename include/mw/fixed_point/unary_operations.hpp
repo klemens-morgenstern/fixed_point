@@ -5,8 +5,8 @@
  *      Author: klemens.morgenstern
  */
 
-#ifndef UNARY_OPERATIONS_HPP_
-#define UNARY_OPERATIONS_HPP_
+#ifndef MW_FIXED_POINT_UNARY_OPERATIONS_HPP_
+#define MW_FIXED_POINT_UNARY_OPERATIONS_HPP_
 
 #include <mw/fixed_point/fixed_point.hpp>
 
