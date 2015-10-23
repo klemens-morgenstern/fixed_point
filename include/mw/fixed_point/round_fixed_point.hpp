@@ -67,8 +67,8 @@ template<long wl, long fl, typename sign, rounding_mode rm, long fl_to = fl>
 constexpr fp_t<wl, fl, sign, rm> round(fp_t<wl, fl, sign, rm> in)
 {
 	typedef typename fp_t<wl, fl_to, sign, rm>::int_type type;
-	constexpr type  first_frac = (1<<(fl_to-1));
-	constexpr type frac_mask = make_mask<type>(fl_to);
+	constexpr static type  first_frac = (1<<(fl_to-1));
+	constexpr static type frac_mask = detail::make_mask<type>(fl_to);
 
 	return in.negative() ?
 			(in.value() & frac_mask) >= first_frac ?
@@ -86,6 +86,7 @@ constexpr fp_t<wl, fl, sign, rm> trunc(fp_t<wl, fl, sign, rm> in)
 {
 	typedef typename fp_t<wl, fl_to, sign, rm>::int_type type;
 	constexpr type frac_mask = make_mask<type>(fl_to);
+	constexpr static type frac_mask = detail::make_mask<type>(fl_to);
 	return in.negative() ?
 			((in.value() & frac_mask) ?
 					(in.value() | frac_mask) + 1
