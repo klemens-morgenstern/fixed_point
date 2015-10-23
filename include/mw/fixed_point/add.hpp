@@ -24,8 +24,8 @@ struct add_result {};
 
 template<long Wl_l, long Fl_l, typename Sign_l, rounding_mode Rm_l,
 		 long Wl_r, long Fl_r, typename Sign_r, rounding_mode Rm_r>
-struct add_result<fp_t<Wl_r, Fl_r, Sign_r, Rm_r>,
-				  fp_t<Wl_l, Fl_l, Sign_l, Rm_l>>
+struct add_result<fp<Wl_r, Fl_r, Sign_r, Rm_r>,
+				  fp<Wl_l, Fl_l, Sign_l, Rm_l>>
 {
 	constexpr static bool is_signed = std::is_signed<Sign_l>::value || is_signed<Sign_r>::value;
 	constexpr static long int_l = ((is_signed && !std::is_signed<sign_l>::value) ? Wl_l + 1 : Wl_l) - Fl_l;
@@ -40,7 +40,7 @@ struct add_result<fp_t<Wl_r, Fl_r, Sign_r, Rm_r>,
 
 	constexpr static rounding_mode rm_res = Rm_l == Rm_r ? Rm_l : rounding_mode::round;
 
-	using type = fp_t<wl_res, fl_res, sign_res, rm_res>;
+	using type = fp<wl_res, fl_res, sign_res, rm_res>;
 
 };
 
@@ -51,7 +51,7 @@ using add_result_t = typename add_result<L, R>::type;
 
 
 template<long Wl, long Fl, typename Sign, rounding_mode Rm>
-constexpr fp_t<Wl, Fl, Sign, Rm> add(fp_t<Wl, Fl, Sign, Rm> lhs, fp_t<Wl, Fl, Sign, Rm> rhs)
+constexpr fp<Wl, Fl, Sign, Rm> add(fp<Wl, Fl, Sign, Rm> lhs, fp<Wl, Fl, Sign, Rm> rhs)
 {
 	return lhs.value() + rhs.value() ;
 }
@@ -61,10 +61,10 @@ constexpr fp_t<Wl, Fl, Sign, Rm> add(fp_t<Wl, Fl, Sign, Rm> lhs, fp_t<Wl, Fl, Si
 
 template<long Wl_l, long Fl_l, typename Sign_l, rounding_mode Rm_l,
 		 long Wl_r, long Fl_r, typename Sign_r, rounding_mode Rm_r>
-constexpr auto operator+(fp_t<Wl_l, Fl_l, Sign_l, Rm_l> lhs, fp_t<Wl_r, Fl_r, Sign_r, Rm_r> rhs)
-		-> add_result_t<fp_t<Wl_l, Fl_l, Sign_l, Rm_l>, fp_t<Wl_r, Fl_r, Sign_r, Rm_r>>
+constexpr auto operator+(fp<Wl_l, Fl_l, Sign_l, Rm_l> lhs, fp<Wl_r, Fl_r, Sign_r, Rm_r> rhs)
+		-> add_result_t<fp<Wl_l, Fl_l, Sign_l, Rm_l>, fp<Wl_r, Fl_r, Sign_r, Rm_r>>
 {
-	using type = add_result_t<fp_t<Wl_l, Fl_l, Sign_l, Rm_l>, fp_t<Wl_r, Fl_r, Sign_r, Rm_r>>;
+	using type = add_result_t<fp<Wl_l, Fl_l, Sign_l, Rm_l>, fp<Wl_r, Fl_r, Sign_r, Rm_r>>;
 
 	return detail::add<
 				type::wl_res,

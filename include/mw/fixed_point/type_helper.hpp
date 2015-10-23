@@ -1,5 +1,5 @@
 /*
- * TypHelper.h
+ * TypeHelper.h
  *
  *  Created on: 07.09.2013
  *      Author: user
@@ -83,7 +83,8 @@ typedef long double float_type_max;
 template<std::size_t Size>
 struct int_type
 {
-
+	typedef typename int_type<Size+1>::unsigned_type unsigned_type;
+	typedef typename int_type<Size+1>::  signed_type   signed_type;
 };
 
 template<> struct int_type<8>
@@ -167,8 +168,27 @@ struct types
 	typedef std::integral_constant<bool, (std::numeric_limits<float_type_max>::digits > size)> float_overflow;
 };
 
-template<typename T> struct to_signed {};
-template<typename T> struct to_unsigned {};
+//because long is not covered by cstdint.
+template<int Size> struct to_signed_workaround {};
+
+
+template<int Size> struct to_unsigned_workaround {};
+
+
+template<typename T> struct to_signed   {typedef typename   to_signed_workaround<sizeof(T)>::type type;};
+template<typename T> struct to_unsigned {typedef typename to_unsigned_workaround<sizeof(T)>::type type;};
+
+
+template<> struct to_signed_workaround<1> {typedef std::int8_t  type;};
+template<> struct to_signed_workaround<2> {typedef std::int16_t type;};
+template<> struct to_signed_workaround<4> {typedef std::int32_t type;};
+template<> struct to_signed_workaround<8> {typedef std::int64_t type;};
+
+template<> struct to_unsigned_workaround<1> {typedef std::uint8_t  type;};
+template<> struct to_unsigned_workaround<2> {typedef std::uint16_t type;};
+template<> struct to_unsigned_workaround<4> {typedef std::uint32_t type;};
+template<> struct to_unsigned_workaround<8> {typedef std::uint64_t type;};
+
 
 
 template<> struct to_signed<std::uint8_t>  { typedef std::int8_t  type; };

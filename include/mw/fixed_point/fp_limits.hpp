@@ -15,9 +15,9 @@ namespace std
 {
 
 template<long wl, long fl, typename _sign_t, mw::fixed_point::rounding_mode r_mode>
-struct numeric_limits<fixed_point::fp_t<wl, fl, _sign_t, r_mode, fp_convs, sign_change, flt_convs, int_convs>>
+struct numeric_limits<fixed_point::fp<wl, fl, _sign_t, r_mode, fp_convs, sign_change, flt_convs, int_convs>>
 {
-	using _fp = fixed_point::fp_t<wl, fl, _sign_t, r_mode, fp_convs, sign_change, flt_convs, int_convs>;
+	using _fp = fixed_point::fp<wl, fl, _sign_t, r_mode, fp_convs, sign_change, flt_convs, int_convs>;
 	static constexpr bool is_specialized = true;
 
     static constexpr _fp min() noexcept { return _fp(_fp::min_i); }

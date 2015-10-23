@@ -20,13 +20,13 @@ namespace fixed_point {
 template<unsigned I> std::integral_constant<unsigned, I> c;
 
 template<long wl, long fl, typename _sign_t, rounding_mode rm, unsigned shift>
-constexpr fp_t<wl, fl+shift, _sign_t, rm> operator<<(fp_t<wl, fl, _sign_t, rm> fp,  std::integral_constant<unsigned, shift>)
+constexpr fp<wl, fl+shift, _sign_t, rm> operator<<(fp<wl, fl, _sign_t, rm> fp,  std::integral_constant<unsigned, shift>)
 {
 	return fp.value();
 }
 
 template<long wl, long fl, typename _sign_t, rounding_mode rm, unsigned shift>
-constexpr fp_t<wl, fl-shift, _sign_t, rm> operator<<(fp_t<wl, fl, _sign_t, rm> fp,  std::integral_constant<unsigned, shift>)
+constexpr fp<wl, fl-shift, _sign_t, rm> operator<<(fp<wl, fl, _sign_t, rm> fp,  std::integral_constant<unsigned, shift>)
 {
 	return fp.value();
 }

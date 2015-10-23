@@ -19,10 +19,10 @@ struct deduce_add_result {};
 
 template<long wl_lhs, long fl_lhs, typename sign_lhs, rounding_mode r_mode_lhs,
 		 long wl_rhs, long fl_rhs, typename sign_rhs, rounding_mode r_mode_rhs>
-struct deduce_add_result<fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> /*lhs*/,
-						 fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> /*rhs*/>
+struct deduce_add_result<fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> /*lhs*/,
+						 fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> /*rhs*/>
 {
-	typedef fp_t<(wl_lhs > wl_rhs ? wl_lhs : wl_rhs),
+	typedef fp<(wl_lhs > wl_rhs ? wl_lhs : wl_rhs),
 			(fl_lhs > fl_rhs ? fl_lhs : fl_rhs),
 			std::conditional_t<(std::is_signed<sign_lhs>::value
 			||std::is_signed<sign_rhs>::value), signed, unsigned>,
@@ -36,10 +36,10 @@ struct deduce_multiply_result {};
 
 template<long wl_lhs, long fl_lhs, typename sign_lhs, rounding_mode r_mode_lhs,
 		 long wl_rhs, long fl_rhs, typename sign_rhs, rounding_mode r_mode_rhs>
-struct deduce_multiply_result<fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> /*lhs*/,
-						 	  fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> /*rhs*/>
+struct deduce_multiply_result<fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> /*lhs*/,
+						 	  fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> /*rhs*/>
 {
-	typedef fp_t<wl_lhs + wl_rhs,
+	typedef fp<wl_lhs + wl_rhs,
 				 fl_lhs + fl_rhs,
 			std::conditional_t<(std::is_signed<sign_lhs>::value
 			|| std::is_signed<sign_rhs>::value), signed, unsigned>,
@@ -53,10 +53,10 @@ struct deduce_divide_result {};
 
 template<long wl_lhs, long fl_lhs, typename sign_lhs, rounding_mode r_mode_lhs,
 		 long wl_rhs, long fl_rhs, typename sign_rhs, rounding_mode r_mode_rhs>
-struct deduce_divide_result<fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> /*lhs*/,
-						 	fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> /*rhs*/>
+struct deduce_divide_result<fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> /*lhs*/,
+						 	fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> /*rhs*/>
 {
-	typedef fp_t<wl_lhs + wl_rhs,
+	typedef fp<wl_lhs + wl_rhs,
 				 fl_lhs + (wl_rhs-fl_rhs), //hopefully that's right.
 			std::conditional_t<(std::is_signed<sign_lhs>::value
 			|| std::is_signed<sign_rhs>::value), signed, unsigned>,
@@ -70,15 +70,15 @@ struct operations
 {
 	template<long wl_lhs, long fl_lhs, typename sign_lhs, rounding_mode r_mode_lhs,
 			 long wl_rhs, long fl_rhs, typename sign_rhs, rounding_mode r_mode_rhs>
-	constexpr auto add(fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> lhs,
-					   fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> rhs) noexcept
+	constexpr auto add(fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> lhs,
+					   fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> rhs) noexcept
 		-> typename deduce_add_result<
-					fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
-		   	   	   	fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type
+					fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
+		   	   	   	fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type
 	{
 		typedef typename deduce_add_result<
-				fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
-	   	   	   	fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type type;
+				fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
+	   	   	   	fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type type;
 
 		typedef typename type::int_type it;
 		return type(static_cast<it>(lhs.value()) + static_cast<it>(rhs.value()));
@@ -86,15 +86,15 @@ struct operations
 
 	template<long wl_lhs, long fl_lhs, typename sign_lhs, rounding_mode r_mode_lhs,
 			 long wl_rhs, long fl_rhs, typename sign_rhs, rounding_mode r_mode_rhs>
-	constexpr auto subtract(fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> lhs,
-					   	    fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> rhs) noexcept
+	constexpr auto subtract(fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> lhs,
+					   	    fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> rhs) noexcept
 		-> typename deduce_add_result<
-					fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
-		   	   	   	fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type
+					fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
+		   	   	   	fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type
 	{
 		typedef typename deduce_add_result<
-				fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
-	   	   	   	fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type type;
+				fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
+	   	   	   	fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type type;
 
 		typedef typename type::int_type it;
 		return type(static_cast<it>(lhs.value()) - static_cast<it>(rhs.value()));
@@ -102,15 +102,15 @@ struct operations
 
 	template<long wl_lhs, long fl_lhs, typename sign_lhs, rounding_mode r_mode_lhs,
 			 long wl_rhs, long fl_rhs, typename sign_rhs, rounding_mode r_mode_rhs>
-	constexpr auto multiply(fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> lhs,
-					   	    fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> rhs) noexcept
+	constexpr auto multiply(fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> lhs,
+					   	    fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> rhs) noexcept
 		-> typename deduce_multiply_result<
-					fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
-		   	   	   	fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type
+					fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
+		   	   	   	fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type
 	{
 		typedef typename deduce_multiply_result<
-				fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
-	   	   	   	fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type type;
+				fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
+	   	   	   	fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type type;
 
 		typedef typename type::int_type it;
 		return type(static_cast<it>(lhs.value()) * static_cast<it>(rhs.value()));
@@ -118,15 +118,15 @@ struct operations
 
 	template<long wl_lhs, long fl_lhs, typename sign_lhs, rounding_mode r_mode_lhs,
 			 long wl_rhs, long fl_rhs, typename sign_rhs, rounding_mode r_mode_rhs>
-	constexpr auto divide(fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> lhs,
-					   	    fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> rhs) noexcept
+	constexpr auto divide(fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs> lhs,
+					   	    fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs> rhs) noexcept
 		-> typename deduce_divide_result<
-					fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
-		   	   	   	fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type
+					fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
+		   	   	   	fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type
 	{
 		typedef typename deduce_divide_result<
-				fp_t<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
-	   	   	   	fp_t<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type type;
+				fp<wl_lhs, fl_lhs, sign_lhs, r_mode_lhs>,
+	   	   	   	fp<wl_rhs, fl_rhs, sign_rhs, r_mode_rhs>>::type type;
 		//not yet implemented.
 		typedef typename type::int_type it;
 		return type(static_cast<it>(lhs.value()) * static_cast<it>(rhs.value()));

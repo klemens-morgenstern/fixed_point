@@ -22,13 +22,13 @@ namespace fixed_point
 
 
 template<long wl, long fl,  rounding_mode rm>
-std::string to_string(fp_t<wl, fl, signed, rm> fp)
+std::string to_string(fp<wl, fl, signed, rm> fp)
 {
 	return boost::format("%1i%fp.s.%2i%.%3i%") % fp.value() % wl % fl;
 }
 
 template<long wl, long fl, rounding_mode rm>
-std::wstring to_wstring(fp_t<wl, fl, signed, rm> fp)
+std::wstring to_wstring(fp<wl, fl, signed, rm> fp)
 {
 	return boost::wformat(L"%1i%fp.s.%2i%.%3i%") % fp.value() % wl % fl;
 }
@@ -36,13 +36,13 @@ std::wstring to_wstring(fp_t<wl, fl, signed, rm> fp)
 
 
 template<long wl, long fl,  rounding_mode rm>
-std::string to_string(fp_t<wl, fl, unsigned, rm> fp)
+std::string to_string(fp<wl, fl, unsigned, rm> fp)
 {
 	return boost::format("%1i%fp.u.%2i%.%3i%") % fp.value() % wl % fl;
 }
 
 template<long wl, long fl, rounding_mode rm>
-std::wstring to_wstring(fp_t<wl, fl, unsigned, rm> fp)
+std::wstring to_wstring(fp<wl, fl, unsigned, rm> fp)
 {
 	return boost::wformat(L"%1i%fp.u.%2i%.%3i%") % fp.value() % wl % fl;
 }
@@ -50,7 +50,7 @@ std::wstring to_wstring(fp_t<wl, fl, unsigned, rm> fp)
 
 
 template<long wl, long fl, rounding_mode rm>
-std::ostream& operator<<(std::ostream& ostr, fp_t<wl, fp, signed, rm> fp)
+std::ostream& operator<<(std::ostream& ostr, fp<wl, fp, signed, rm> fp)
 {
 	ostr << fp.value() << "fp.s." << wl << "." << fl;
 	return ostr;
@@ -58,7 +58,7 @@ std::ostream& operator<<(std::ostream& ostr, fp_t<wl, fp, signed, rm> fp)
 
 
 template<long wl, long fl, rounding_mode rm>
-std::owstream& operator<<(std::owstream& ostr, fp_t<wl, fp, signed, rm> fp)
+std::owstream& operator<<(std::owstream& ostr, fp<wl, fp, signed, rm> fp)
 {
 	ostr << fp.value() << L"fp.s." << wl << "." << fl;
 	return ostr;
@@ -66,7 +66,7 @@ std::owstream& operator<<(std::owstream& ostr, fp_t<wl, fp, signed, rm> fp)
 
 
 template<long wl, long fl, rounding_mode rm>
-std::ostream& operator<<(std::ostream& ostr, fp_t<wl, fp, unsigned, rm> fp)
+std::ostream& operator<<(std::ostream& ostr, fp<wl, fp, unsigned, rm> fp)
 {
 	ostr << fp.value() << "fp.u." << wl << "." << fl;
 	return ostr;
@@ -74,7 +74,7 @@ std::ostream& operator<<(std::ostream& ostr, fp_t<wl, fp, unsigned, rm> fp)
 
 
 template<long wl, long fl, rounding_mode rm>
-std::owstream& operator<<(std::owstream& ostr, fp_t<wl, fp, unsigned, rm> fp)
+std::owstream& operator<<(std::owstream& ostr, fp<wl, fp, unsigned, rm> fp)
 {
 	ostr << fp.value() << L"fp.u." << wl << "." << fl;
 	return ostr;
