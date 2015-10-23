@@ -65,7 +65,8 @@ public:
 		return adapt_int_impl(it, std::integral_constant<bool, is_signed>());
 	}
 
-	template<typename Dbl> Dbl limit(Dbl value)
+	template<typename Dbl>
+	constexpr static Dbl  limit(Dbl value)
 	{
 		return (value > max_f) ? max_f : (value < min_f ? min_f : value);
 	}
@@ -97,7 +98,7 @@ public:
 			 typename IsFloat = std::enable_if_t<std::is_floating_point<T>::value>,
 			 typename NotNarrowing = std::enable_if_t<(sizeof(float_type)>=sizeof(T))>>
 	constexpr fp(T flt) noexcept
-			: _value(static_cast<int_type>(limit(flt)/factor)) {}
+			: _value(static_cast<int_type>(limit(flt)*factor)) {}
 
 	///Construct from a floating point larg then the needed one of this fixed point. Explicit, because it's mangling
 	template<typename T,
@@ -105,7 +106,7 @@ public:
 			 typename Narrowing = std::enable_if_t<(sizeof(float_type)<sizeof(T))>,
 			 typename = void> //because i cannot overload elsewise
 	explicit constexpr fp(T flt) noexcept
-		: _value(static_cast<int_type>(limit(flt)/factor)) {}
+		: _value(static_cast<int_type>(limit(flt)*factor)) {}
 
 	///Construct from a integral smaller then the needed one of this fixed point. Not explicit
 	template<typename T,

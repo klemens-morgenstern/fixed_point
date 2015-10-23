@@ -9,7 +9,8 @@ project
     ;
     
 test-suite fixed-point
-	: 
+	:
+	[ run type_helper.cpp ] 
 	[ run test1.cpp  ] 
 	[ run double_rounding.cpp ]
 	[ run fp_rounding.cpp ]

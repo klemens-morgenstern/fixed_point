@@ -38,10 +38,22 @@ using boost::multiprecision:: int1024_t;
 namespace detail
 {
 
+
+
 template<std::size_t Size>
 struct float_type
 {
-	typedef typename float_type<Size+1>::type type;
+	constexpr static std::size_t round_up(std::size_t num)
+	{
+		return  ((std::numeric_limits<float>:: digits == num) ||
+				 (std::numeric_limits<double>::digits == num) ||
+				 (std::numeric_limits<long double>::digits == num))
+				? num :
+				((num > std::numeric_limits<long double>::digits) ?
+						std::numeric_limits<long double>::digits
+				: round_up(num+1));
+	};
+	typedef typename float_type<round_up(Size)>::type type;
 };
 
 template<>
@@ -83,33 +95,46 @@ typedef long double float_type_max;
 template<std::size_t Size>
 struct int_type
 {
-	typedef typename int_type<Size+1>::unsigned_type unsigned_type;
-	typedef typename int_type<Size+1>::  signed_type   signed_type;
+	constexpr static std::size_t round_up(std::size_t num)
+	{
+		return  ((num == 8)   ||
+				 (num == 16)  ||
+				 (num == 32)  ||
+				 (num == 64)  ||
+				 (num == 128) ||
+				 (num == 256) ||
+				 (num == 512) ||
+				 (num == 1024))
+				? num
+				: round_up(num+1);
+	};
+	typedef typename int_type<round_up(Size)>::unsigned_type unsigned_type;
+	typedef typename int_type<round_up(Size)>::  signed_type   signed_type;
 };
 
 template<> struct int_type<8>
 {
 	typedef std::uint8_t unsigned_type;
-	typedef std::int16_t signed_type;
+	typedef std:: int8_t signed_type;
 };
 
 template<> struct int_type<16>
 {
 	typedef std::uint16_t unsigned_type;
-	typedef std::int32_t signed_type;
+	typedef std:: int16_t signed_type;
 };
 
 template<> struct int_type<32>
 {
 	typedef std::uint32_t unsigned_type;
-	typedef std::int32_t signed_type;
+	typedef std:: int32_t signed_type;
 
 };
 
 template<> struct int_type<64>
 {
 	typedef std::uint64_t unsigned_type;
-	typedef std::int64_t signed_type;
+	typedef std:: int64_t signed_type;
 };
 
 
@@ -165,7 +190,7 @@ struct types
 						signed_type>::type int_type;
 
 	typedef typename float_type<size + (std::is_unsigned<Sign>::value ? 1 : 0)>::type	float_type;
-	typedef std::integral_constant<bool, (std::numeric_limits<float_type_max>::digits > size)> float_overflow;
+	constexpr static bool float_overflow = std::numeric_limits<float_type_max>::digits < size;
 };
 
 //because long is not covered by cstdint.
