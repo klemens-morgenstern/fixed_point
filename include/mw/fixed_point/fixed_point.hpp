@@ -42,7 +42,7 @@ struct fp final
 	constexpr static int_type sign_bit = is_signed ? (1<<(wl-1)) : 0;
 
 	///The factor is the one in the fixed-point notation
-	static constexpr float_type factor = (1<<fl);
+	static constexpr float_type factor = fl > 0 ? (1<<fl) : 1./(1<<-fl);
 private:
 	///Value stored
 	int_type _value;
@@ -256,6 +256,18 @@ public:
 
 	friend class operations;
 };
+
+
+
+template<long wl, long fl, typename _sign_t = signed, rounding_mode r_mode = rounding_mode::trunc>
+using sfp = fp<wl, fl,   signed, r_mode>;
+
+
+template<long wl, long fl, typename _sign_t = signed, rounding_mode r_mode = rounding_mode::trunc>
+using ufp = fp<wl, fl, unsigned, r_mode>;
+
+
+
 }
 }
 #endif /* fp_H_ */
