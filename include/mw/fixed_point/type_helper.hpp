@@ -12,7 +12,7 @@
 #include <cstdint>
 #include <type_traits>
 
-#ifndef NO_BOOST
+#ifndef MW_FIXED_POINT_EXPERIMENTAL_BOOST_MULTIPRECISION
 #include <boost/iterator/iterator_traits.hpp> //for some reason travis does not compile
 #include <boost/multiprecision/float128.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
@@ -23,7 +23,7 @@ namespace mw
 namespace fixed_point
 {
 
-#ifndef NO_BOOST
+#ifdef MW_FIXED_POINT_EXPERIMENTAL_BOOST_MULTIPRECISION
 using boost::multiprecision::float128;
 using boost::multiprecision::uint128_t;
 using boost::multiprecision:: int128_t;
@@ -75,7 +75,7 @@ struct float_type<std::numeric_limits<long double>::digits>
 };
 
 
-#ifndef NO_BOOST
+#ifdef MW_FIXED_POINT_EXPERIMENTAL_BOOST_MULTIPRECISION
 template<>
 struct float_type<std::numeric_limits<boost::multiprecision::float128>::digits>
 {
@@ -138,7 +138,7 @@ template<> struct int_type<64>
 };
 
 
-#ifndef NO_BOOST
+#ifdef MW_FIXED_POINT_EXPERIMENTAL_BOOST_MULTIPRECISION
 template<> struct int_type<128>
 {
 	typedef boost::multiprecision::uint128_t unsigned_type;
@@ -234,7 +234,7 @@ template<> struct to_unsigned<std:: int32_t> { typedef std::uint32_t type; };
 template<> struct to_unsigned<std::uint64_t> { typedef std::uint64_t type; };
 template<> struct to_unsigned<std:: int64_t> { typedef std::uint64_t type; };
 
-#ifndef NO_BOOST
+#ifdef MW_FIXED_POINT_EXPERIMENTAL_BOOST_MULTIPRECISION
 template<> struct to_signed<uint128_t>  { typedef int128_t  type; };
 template<> struct to_signed< int128_t>  { typedef int128_t  type; };
 template<> struct to_signed<uint256_t>  { typedef int256_t  type; };

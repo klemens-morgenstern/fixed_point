@@ -25,7 +25,7 @@
 int test_main(int , char* [])
 {
 	using mw::fixed_point::detail::types;
-	using boost::multiprecision::float128;
+/*	using boost::multiprecision::float128;
 	using boost::multiprecision::uint128_t;
 	using boost::multiprecision:: int128_t;
 	using boost::multiprecision::uint256_t;
@@ -33,7 +33,7 @@ int test_main(int , char* [])
 	using boost::multiprecision::uint512_t;
 	using boost::multiprecision:: int512_t;
 	using boost::multiprecision::uint1024_t;
-	using boost::multiprecision:: int1024_t;
+	using boost::multiprecision:: int1024_t;*/
 
 
 	CHECK_TYPE(1 , signed,   std::int8_t, std::int8_t, std::uint8_t, float, false);
@@ -50,7 +50,7 @@ int test_main(int , char* [])
 
 	CHECK_TYPE(63, signed,   std::int64_t, std::int64_t, std::uint64_t, long double, false);
 	CHECK_TYPE(64, signed,   std::int64_t, std::int64_t, std::uint64_t, long double, false);
-	CHECK_TYPE(65, signed,   int128_t, int128_t, uint128_t, long double, false);
+/*	CHECK_TYPE(65, signed,   int128_t, int128_t, uint128_t, long double, false);
 
 	CHECK_TYPE(127, signed,  int128_t, int128_t, uint128_t, long double, true);
 	CHECK_TYPE(128, signed,  int128_t, int128_t, uint128_t, long double, true);
@@ -65,7 +65,7 @@ int test_main(int , char* [])
 	CHECK_TYPE(513, signed,  int1024_t, int1024_t, uint1024_t, long double, true);
 
 	CHECK_TYPE(1023, signed, int1024_t, int1024_t, uint1024_t, long double, true);
-	CHECK_TYPE(1024, signed, int1024_t, int1024_t, uint1024_t, long double, true);
+	CHECK_TYPE(1024, signed, int1024_t, int1024_t, uint1024_t, long double, true);*/
 
 
 
@@ -85,7 +85,7 @@ int test_main(int , char* [])
 
 	CHECK_TYPE(63, unsigned,   std::uint64_t, std::int64_t, std::uint64_t, long double, false);
 	CHECK_TYPE(64, unsigned,   std::uint64_t, std::int64_t, std::uint64_t, long double, false);
-	CHECK_TYPE(65, unsigned,   uint128_t, int128_t, uint128_t, long double, false);
+/*	CHECK_TYPE(65, unsigned,   uint128_t, int128_t, uint128_t, long double, false);
 
 	CHECK_TYPE(127, unsigned,  uint128_t, int128_t, uint128_t, long double, true);
 	CHECK_TYPE(128, unsigned,  uint128_t, int128_t, uint128_t, long double, true);
@@ -100,7 +100,7 @@ int test_main(int , char* [])
 	CHECK_TYPE(513, unsigned,  uint1024_t, int1024_t, uint1024_t, long double, true);
 
 	CHECK_TYPE(1023, unsigned, uint1024_t, int1024_t, uint1024_t, long double, true);
-	CHECK_TYPE(1024, unsigned, uint1024_t, int1024_t, uint1024_t, long double, true);
+	CHECK_TYPE(1024, unsigned, uint1024_t, int1024_t, uint1024_t, long double, true);*/
 
 
 

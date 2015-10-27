@@ -24,7 +24,7 @@ template<> struct select_int<float> 	  {typedef int 			type;};
 template<> struct select_int<double> 	  {typedef long 		type;};
 template<> struct select_int<long double> {typedef long long 	type;};
 
-#ifndef NO_BOOST
+#ifdef MW_FIXED_POINT_EXPERIMENTAL_BOOST_MULTIPRECISION
 template<> struct select_int<float128> {typedef int128_t type;};
 #endif
 

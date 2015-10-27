@@ -38,11 +38,16 @@ struct fp final
 	constexpr static long word_length 	  = wl;
 	constexpr static long fraction_length = fl;
 	constexpr static rounding_mode round_mode = r_mode;
-	constexpr static int_type mask = make_mask(wl);
-	constexpr static int_type sign_bit = is_signed ? (1<<(wl-1)) : 0;
+	constexpr static int_type mask = make_mask<int_type>(wl);
+	constexpr static int_type sign_bit = is_signed ?
+			(
+					static_cast<int_type>(1)<<(wl-1)
+					) : 0;
 
 	///The factor is the one in the fixed-point notation
-	static constexpr float_type factor = fl > 0 ? (1<<fl) : 1./(1<<-fl);
+	static constexpr float_type factor = fl > 0 ?
+			   (static_cast<int_type>(1)<<fl) :
+			1./(static_cast<int_type>(1)<<-fl);
 private:
 	///Value stored
 	int_type _value;
