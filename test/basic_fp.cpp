@@ -7,7 +7,7 @@
 //============================================================================
 
 
-#define CHECK(Cond) BOOST_CHECK(Cond); static_assert(Cond, #Cond);
+#define CHECK(Cond...) BOOST_CHECK(Cond); static_assert(Cond, #Cond);
 
 #include <boost/test/minimal.hpp>
 
@@ -29,6 +29,7 @@ int test_main(int, char**)
 	CHECK(static_cast<double>(fp<4,2>(0b1111)) == -0.25);
 	CHECK(static_cast<double>(fp<4,2>(0b0000)) ==  0.0);
 	CHECK(static_cast<double>(fp<4,2>(0b0100)) ==  1.0);
+	CHECK(static_cast<double>(fp<4,2>(0b1100)) == -1.0);
 	CHECK(static_cast<double>(fp<4,2>(0b1000)) == -2.0);
 
 	CHECK(static_cast<double>(fp<5,2>(232.2)) == 3.75);
@@ -77,6 +78,25 @@ int test_main(int, char**)
 //	CHECK(static_cast<long double>(fp<128,64,   signed>(   1ll<<32ll)) ==  1.0l);
 //	CHECK(static_cast<long double>(fp<128,64,   signed>((~0ll)<<32ll)) == -1.0l);
 
+
+
+	//so, until here we have tested if a int is converted into a double in the correct way - time to check the double to int conversion.
+
+	CHECK((fp<4,2>( 1.0).value() ==  4));
+	CHECK((fp<4,2>(-1.0).value() == -4));
+
+	CHECK((fp<2,3>( .125).value() ==  1));
+	CHECK((fp<2,3>(-.125).value() == -1));
+	CHECK((fp<2,3>(-.250).value() == -2));
+
+	CHECK((fp<1,-4, unsigned>( 16.0).value() ==  1));
+	CHECK((fp<2,-4,   signed>( 16.0).value() ==  1));
+	CHECK((fp<2,-4,   signed>(-16.0).value() == -1));
+	CHECK((fp<2,-4,   signed>(-32.0).value() == -2));
+
+	//test the limitation of values.
+	CHECK((fp<3,1>(12398.77).value() == 3));
+	CHECK((fp<3,1>(-2398.77).value() == -4));
 
 
 	return 0;

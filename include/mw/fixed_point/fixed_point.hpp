@@ -78,9 +78,9 @@ public:
 
 	constexpr static fp from_int(int_type it) { return it<<fl;}
 
-    constexpr int_type   value() const {return _value;}
-    constexpr bool is_negative() const {return _value & sign_bit;};
-    constexpr static int_type max_i = std::is_signed<_sign_t>::value ? (make_mask(wl-1)) : mask;
+	constexpr int_type   value() const {return _value;}
+	constexpr bool is_negative() const {return _value & sign_bit;};
+	constexpr static int_type max_i = std::is_signed<_sign_t>::value ? (make_mask(wl-1)) : mask;
 	constexpr static int_type min_i = std::is_signed<_sign_t>::value ? (~make_mask(wl-1)) : 0;
 
 	constexpr static fp max = fp(max_i);
